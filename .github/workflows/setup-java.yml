@@ -25,7 +25,7 @@ jobs:
         run: java -version
 
   java_v2:
-    name: Build with setup-java@v2 (${{ matrix.java }} ${{ matrix.arch }} ${{ matrix.dist }})
+    name: Build with setup-java@v2 (${{ matrix.java }} ${{ matrix.arch }} ${{ matrix.dist }} ${{ matrix.latest }})
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -33,6 +33,7 @@ jobs:
         java: [ 8, 11 ]
         arch: [ x86, x64 ]
         dist: [ adopt, zulu ]
+        latest: [ true, false ]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -43,6 +44,7 @@ jobs:
           java-version: ${{ matrix.java }}
           architecture: ${{ matrix.arch }}
           distribution: ${{ matrix.dist }}
+          check-latest: ${{ matrix.latest }}
 
       - name: Java version
         run: java -version
