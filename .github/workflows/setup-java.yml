@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   java_v1:
-    name: Build with Java ${{ matrix.java }} ${{ matrix.arch }}
+    name: Build with setup-java@v1 (${{ matrix.java }} ${{ matrix.arch }})
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -22,10 +22,10 @@ jobs:
           architecture: ${{ matrix.arch }}
 
       - name: Java version
-        run: java --version
+        run: java -version
 
   java_v2:
-    name: Build with Java ${{ matrix.java }} ${{ matrix.arch }}
+    name: Build with setup-java@v2 (${{ matrix.java }} ${{ matrix.arch }})
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -44,4 +44,4 @@ jobs:
           distribution: adopt
 
       - name: Java version
-        run: java --version
+        run: java -version
