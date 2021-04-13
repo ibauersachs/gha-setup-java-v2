@@ -4,11 +4,12 @@ on: [push, pull_request]
 
 jobs:
   java_v1:
-    name: Build with setup-java@v1 (${{ matrix.java }} ${{ matrix.arch }})
-    runs-on: ubuntu-latest
+    name: Build with setup-java@v1 (${{ matrix.os }} ${{ matrix.java }} ${{ matrix.arch }})
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
         java: [ 8, 11 ]
         arch: [ x86, x64 ]
     steps:
@@ -25,11 +26,12 @@ jobs:
         run: java -version
 
   java_v2:
-    name: Build with setup-java@v2 (${{ matrix.java }} ${{ matrix.arch }} ${{ matrix.dist }} ${{ matrix.latest }})
-    runs-on: ubuntu-latest
+    name: Build with setup-java@v2 (${{ matrix.os }} ${{ matrix.java }} ${{ matrix.arch }} ${{ matrix.dist }} ${{ matrix.latest }})
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
         java: [ 8, 11 ]
         arch: [ x86, x64 ]
         dist: [ adopt, zulu ]
