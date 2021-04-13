@@ -1,0 +1,11 @@
+name: Setup Java
+on: [push]
+jobs:
+  java:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/setup-java@v2
+        with:
+          java-version: 8
+          architecture: x86
+          distribution: adopt
